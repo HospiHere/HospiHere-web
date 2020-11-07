@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+body{
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    align-items: center;
+}
+.header{
+    width: 100%;
+    height: 60px;
+    display: block;
+    background-color: #ffffff;
+}
+.inner_header{
+    width: 100%;
+    max-width: 990px;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    background-color:#ffffff;
+}
+.logo{
+    height: 100%;
+    display: table;
+    float: left;
+}
+.logo h1{
+    color: #2086c2;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: 'Montserrat';
+    font-size: 32px;
+    padding: 11px 0;
+}
+.logo h1 span{
+    font-weight: 800;
+}
+.hospi_logo{
+    height: 100%;
+    display: table;
+    float: right;
+}
+.hospi_logo h1{
+    color: #2086c2;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: 'Montserrat';
+    font-size: 32px;
+
+    padding: 0 10px;
+    margin: 8px 7px;
+}
+.hospi_logo button{
+    margin: 8px 5px;
+    padding: 0 4px;
+    text-decoration: none;
+    color: #E91E63;
+    font-size: 8px;
+    border-radius: 15%;
+}
+.hospi_logo button h5{
+    margin-bottom: 2px;
+    font-size: 15px;
+}
+
