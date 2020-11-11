@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <h1 style="text-align: center;">Hospital List</h1>
+    {% for c in content %}
+        <div style="background-color: #2086c2;padding: 20px;color: white; text-align: center;margin: 20px 20%;">
+            <p style="font-weight: 900;">{{c.name}}</p>
+            <p>Available beds: {{c.bed}}</p>
+            <p>Specialization: {{c.specialization}}</p>
+        </div>
+        
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}
