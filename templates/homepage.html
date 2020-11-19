@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if user.is_authenticated %}
 
     <!--     Menu section   -->
     <div class="wrapper">
@@ -44,5 +45,8 @@
     </div>
     
 
+    {% else %}
+    {% include 'login.html' %}
+    {% endif %}
 
 {% endblock %}
