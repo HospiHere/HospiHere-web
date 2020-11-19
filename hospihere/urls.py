@@ -21,6 +21,7 @@ urlpatterns = [
     path('',TemplateView.as_view(template_name="homepage.html")),
     path('first_login',TemplateView.as_view(template_name="login.html")),
     path('',include('sign_in.urls')),
+    path('',include('pre_book.urls')),
     path('admin/', admin.site.urls),
     path('', include('hospital_list.urls')),
 ]

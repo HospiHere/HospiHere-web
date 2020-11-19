@@ -8,7 +8,7 @@ from firebase_admin import firestore
 #cred = credentials.Certificate('credentials.json')
 #firebase_admin.initialize_app(cred)
 
-#db = firestore.client()
+db = firestore.client()
 
 # Create your views here.
 def hospital_list(request):
