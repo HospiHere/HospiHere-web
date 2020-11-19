@@ -24,7 +24,7 @@
                     </a>
                 </div>
                 <div class="hospi_logo">
-                    <h1>Prime Hospital</h1>
+                    <h1> {{ request.session.hospital }} </h1>
                     {% if user.is_authenticated %}
                     <button type="button" onclick="location.href='logout'">
                         <div class="logimg"><i class="fas fa-sign-out-alt" style="font-size: 20px;"></i></div>
