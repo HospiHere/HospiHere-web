@@ -20,6 +20,8 @@ def login(request):
         email = request.POST['email']
         password = request.POST['password']
         
+        request.session['hospital'] = username
+
         user = auth.authenticate(username=username,last_name=branch,email=email,password=password)
 
         if user is not None:
