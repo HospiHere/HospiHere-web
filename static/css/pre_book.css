@@ -1,6 +1,10 @@
 .pre_book{
-    margin: 30px 60px;
-    padding: 15px;
+    margin: 15px 50px;
+    padding: 0px 15px;
+}
+.pre_book h3{
+  text-align: center;
+  margin-bottom: 15px;
 }
 table, th, td {
     border: 1px solid black;
@@ -12,5 +16,5 @@ table, th {
   }
  
 th, td {
-    padding: 15px;
+    padding: 8px;
   }
