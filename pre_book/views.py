@@ -16,11 +16,16 @@ def pre_book(request):
     items=[]
     for doc in doc_ref:
         items.append(doc.to_dict())
+        
     return render(request,"pre_book.html", {'content': items})
 
 def update(request, hospital, mobile, preBook_date):
+    patient_name = request.POST.get('patient_name')
+    patient_address = request.POST.get('patient_address')
     db.collection(u'booking').document(hospital + '-' + mobile + '-' + preBook_date).update({
-    "status": "confirm"
+    "status": "Confirm",
+    "patient_name": patient_name,
+    "patient_address": patient_address 
     })
 
     user = request.user.username
@@ -28,6 +33,7 @@ def update(request, hospital, mobile, preBook_date):
     items=[]
     for doc in doc_ref:
         items.append(doc.to_dict())
+
     return render(request,"pre_book.html", {'content': items})
 
     
