@@ -2,8 +2,31 @@
 {% block content %}
 {% if user.is_authenticated %}
 
-
-    
+    <div class="pre_book">
+        <table style="width: 100%;">
+            <tr>
+                <th>Hospital</th>
+                <th>Disease</th>
+                <th>Mobile</th> 
+                <th>PreBook Date</th>
+                <th>Status</th>
+            </tr>
+            {% for c in content%}
+            <form method="POST"></form>
+            <tr>
+                <td>{{c.hospital}}</td>
+                <td>{{c.disease}}</td>
+                <td>{{c.mobile}}</td>
+                <td>{{c.preBook_date}}</td>
+                {% if c.status == "pending" %}
+                <td><a href="{% url 'update' c.hospital c.mobile c.preBook_date%}" class="btn" style="background-color: rgb(230, 27, 71);">{{c.status}}</a></td>
+                {% else %}
+                <td><a href="#" class="btn" style="background-color: rgb(101, 230, 27);">{{c.status}}</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 {% else %}
 {% include 'login.html' %}
