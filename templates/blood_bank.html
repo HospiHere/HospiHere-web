@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+
+<div id="vue-app">
+    <h1>[[ myTitle ]]</h1>
+</div>
+
+  <script type="text/javascript">
+    let app = new Vue({
+      el: "#vue-app",
+      delimiters: ['[[', ']]'],
+      data: {
+        myTitle: 'Hello Vue!',
+      },
+    });
+  </script>
+
+{% else %}
+{% include 'login.html' %}
+{% endif %}
+{% endblock %}
