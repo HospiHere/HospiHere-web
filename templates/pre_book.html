@@ -19,10 +19,7 @@
                 <td style="padding-top: 23px;font-size: 20px;">{{c.preBook_date}}</td>
                 {% if c.status == "Pending" %}
                 <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Confirm Booking</button></td>
-                {% else %}
-                <td><a href="#" class="btn btn-success";">Confirmed</a></td>
-                {% endif %}
-            </tr>
+            
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -34,7 +31,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
-                    <form method="POST" action="{% url 'update' c.hospital c.mobile c.preBook_date%}">
+                    <form method="POST" action="{% url 'update' c.disease c.hospital c.mobile c.preBook_date%}">
                         {% csrf_token %}
                         <div class="modal-body">
                         <input name="patient_name" type="text" placeholder="Patient Name" required><br>
@@ -48,6 +45,10 @@
                 </div>
                 </div>
             </div>
+            {% else %}
+            <td><a href="#" class="btn btn-success";">Confirmed</a></td>
+            {% endif %}
+            </tr>
             {% endfor %}
         </table>
     </div>
