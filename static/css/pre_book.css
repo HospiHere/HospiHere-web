@@ -1,0 +1,20 @@
+.pre_book{
+    margin: 15px 50px;
+    padding: 0px 15px;
+}
+.pre_book h3{
+  text-align: center;
+  margin-bottom: 15px;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+  }
+table, th {
+    text-align: center;
+  }
+ 
+th, td {
+    padding: 8px;
+  }

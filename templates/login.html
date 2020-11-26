@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>HospiHere</title>
+</head>
+<body>
+    <h4 style="text-align: center; font-size:xx-large;">Login To Continue</h4>
+    <div class="reg_container">
+        <form action="login" method="POST"> 
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-group input-group-icon">
+                  <input type="text" name="hospital" placeholder="Hospital Name"/>
+                  <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+        
+                <div class="input-group input-group-icon">
+                  <input type="text" name="branch" placeholder="Branch"/>
+                  <div class="input-icon"><i class="fas fa-code-branch"></i></div>
+                </div>
+                <div class="input-group input-group-icon">
+                  <input type="email" name="email" placeholder="Email Address"/>
+                  <div class="input-icon"><i class="fa fa-envelope"></i></div>
+                </div>
+                <div class="input-group input-group-icon">
+                  <input type="password" name="password" placeholder="Password"/>
+                  <div class="input-icon"><i class="fa fa-key"></i></div>
+                </div>
+              </div>
+              <input type="submit">
+            </div>
+        </form>
+      
+    <h4 style="text-align: center;">Register <a href="register">Here</a></h4>
+    
+    <div>
+        {% for message in messages %}
+        <h3>{{ message }}</h3>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

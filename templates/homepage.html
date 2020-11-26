@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+
+    <!--     Menu section   -->
+    <div class="wrapper">
+        <h1>SERVICE</h1>
+        
+        <div class="menu_section">
+            <div class="menu">
+                <div class="menu_img">
+                    <img src="../static/photos/pre_book.png" alt="">
+                </div>
+                <a href="pre_book" class="btn"><h3>Pre Booking</h3></a>
+            </div>
+    
+            <div class="menu">
+                <div class="menu_img">
+                    <img src="../static/photos/release.png" alt="">
+                </div>
+                <button class="btn"><h3>Patient Release</h3></button>
+            </div>
+    
+            <div class="menu">
+                <div class="menu_img">
+                    <img src="../static/photos/bed.png" alt="">
+                </div>
+                <button class="btn"><h3>Available Bed</h3></button>
+            </div>
+
+            <div class="menu">
+                <div class="menu_img">
+                    <img src="../static/photos/bed.png" alt="">
+                </div>
+                <a href="hospital_list" class="btn"><h3>Hospital List</h3></a>
+            </div>
+    
+            <div class="menu">
+                <div class="menu_img">
+                    <img src="../static/photos/blood_bank.png" alt="">
+                </div>
+                <a href="bloodBank" class="btn"><h3>Blood & Plasma Bank</h3></a>
+            </div>
+        </div>
+    </div>
+    
+
+    {% else %}
+    {% include 'login.html' %}
+    {% endif %}
+
+{% endblock %}
