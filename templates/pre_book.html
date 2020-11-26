@@ -11,21 +11,22 @@
                 <th scope="col">PreBook Date</th>
                 <th scope="col">Status</th>
             </thead>
-            {% for c in content%}
-            <form method="POST"></form>
+            {% for c in content %}
+            <form method="POST" action="{% url 'update' c.hospital c.mobile c.disease c.preBook_date%}">
+            {% csrf_token %}
             <tr>
                 <td style="padding-top: 23px;font-size: 20px;">{{c.mobile}}</td>
                 <td style="padding-top: 23px;font-size: 20px;">{{c.disease}}</td>
                 <td style="padding-top: 23px;font-size: 20px;">{{c.preBook_date}}</td>
                 {% if c.status == "Pending" %}
-                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Confirm Booking</button></td>
+                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#id{{c.id}}">Confirm Booking</button></td>
                 {% else %}
                 <td><a href="#" class="btn btn-success";">Confirmed</a></td>
                 {% endif %}
             </tr>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="id{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -34,20 +35,25 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
-                    <form method="POST" action="{% url 'update' c.hospital c.mobile c.preBook_date%}">
-                        {% csrf_token %}
-                        <div class="modal-body">
-                        <input name="patient_name" type="text" placeholder="Patient Name" required><br>
-                        <input name="patient_address" type="text" placeholder="Patient Address" required>
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">CONFIRM</button>
-                        </div>
-                    </form>
+                    
+                        
+                    <div class="modal-body">
+                    <p><span style="font-weight: 900;">Hospital: </span>{{c.disease}}</p>
+                    <p><span style="font-weight: 900;">Hospital: </span>{{c.hospital}}</p>
+                    <p><span style="font-weight: 900;">Hospital: </span>{{c.preBook_date}}</p>
+                    <p><span style="font-weight: 900;">Hospital: </span>{{c.status}}</p>
+                    <input name="patient_name" type="text" placeholder="Patient Name" required><br>
+                    <input name="patient_address" type="text" placeholder="Patient Address" required>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">CONFIRM</button>
+                    </div>
+                    
                 </div>
                 </div>
             </div>
+            </form>
             {% endfor %}
         </table>
     </div>

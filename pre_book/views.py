@@ -19,14 +19,18 @@ def pre_book(request):
         
     return render(request,"pre_book.html", {'content': items})
 
-def update(request, hospital, mobile, preBook_date):
+def update(request, hospital, mobile, disease, preBook_date):
     patient_name = request.POST.get('patient_name')
     patient_address = request.POST.get('patient_address')
-    db.collection(u'booking').document(hospital + '-' + mobile + '-' + preBook_date).update({
+
+    doc_id = str(disease) + str(hospital) + str(mobile) + str(preBook_date)
+    print(doc_id)
+    db.collection(u'booking').document(doc_id).update({
     "status": "Confirm",
     "patient_name": patient_name,
     "patient_address": patient_address 
     })
+
 
     user = request.user.username
     doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).stream()
