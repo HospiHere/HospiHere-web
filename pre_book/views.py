@@ -22,7 +22,7 @@ def pre_book(request):
 def update(request, disease, hospital, mobile, preBook_date):
     patient_name = request.POST.get('patient_name')
     patient_address = request.POST.get('patient_address')
-    db.collection(u'booking').document(hospital + '-' + mobile + '-' + preBook_date).update({
+    db.collection(u'booking').document(disease + hospital + mobile + preBook_date).update({
     "status": "Confirm",
     "disease_check": disease,
     "patient_name": patient_name,
