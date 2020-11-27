@@ -65,7 +65,9 @@ body{
     text-decoration: none;
     color: #E91E63;
     font-size: 8px;
+    border: 2px solid black;
     border-radius: 15%;
+    background-color: #efefef;
 }
 .hospi_logo button h5{
     margin-bottom: 2px;

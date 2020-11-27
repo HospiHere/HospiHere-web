@@ -1806,6 +1806,13 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
+axios@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
+  integrity sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
+  dependencies:
+    follow-redirects "^1.10.0"
+
 babel-eslint@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.1.0.tgz#6968e568a910b78fb3779cdd8b6ac2f479943232"
@@ -3899,7 +3906,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.0.tgz#b42e8d93a2a7eea5ed88633676d6597bc8e384db"
   integrity sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA==
@@ -5250,6 +5257,11 @@ map-visit@^1.0.0:
   integrity sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
   dependencies:
     object-visit "^1.0.0"
+
+material-design-icons-iconfont@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/material-design-icons-iconfont/-/material-design-icons-iconfont-6.1.0.tgz#ffad21a71f2000336fd410cbeba36ddbf301f0f2"
+  integrity sha512-wRJtOo1v1ch+gN8PRsj0IGJznk+kQ8mz13ds/nuhLI+Qyf/931ZlRpd92oq0IRPpZIb+bhX8pRjzIVdcPDKmiQ==
 
 md5.js@^1.3.4:
   version "1.3.5"
@@ -8234,10 +8246,10 @@ vuetify-loader@^1.3.0:
     file-loader "^4.0.0"
     loader-utils "^1.2.0"
 
-vuetify@^2.2.11:
-  version "2.3.18"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.3.18.tgz#1168c0e2ab4eee5e915d007e31066e68fb13e59f"
-  integrity sha512-cn+sZ19HY9qC7WHqcoCaZQZshyki5zqone37GJmgmoCvQaYraM3ptrcvSj8sR6fDuBHz4OLIfAIeLDyhz66hcw==
+vuetify@^2.3.19:
+  version "2.3.19"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.3.19.tgz#94ae6a8b0e2d52266b2a47c6a11021c63aa1b7b0"
+  integrity sha512-xqaiSEv0SUrzcoYU/N+orF7crRrhFkZt2ZPSDyPdHhiL6vMOFSYyz0OyGX3lAFykX/FJJMkNPgYTdg1l7WD1jA==
 
 watchpack-chokidar2@^2.0.1:
   version "2.0.1"
