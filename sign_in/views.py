@@ -17,18 +17,17 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['hospital']
         branch = request.POST['branch']
-        email = request.POST['email']
         password = request.POST['password']
         
         request.session['hospital'] = username
 
-        user = auth.authenticate(username=username,last_name=branch,email=email,password=password)
+        user = auth.authenticate(username=username,last_name=branch,password=password)
 
         if user is not None:
             auth.login(request, user)
             return redirect("/")
         else:
-            messages.info(request,'Invalid credentials')
+            messages.info(request,'Invalid Credentials')
             return redirect('login')
     else:
         return render(request,'login.html')

@@ -1,0 +1,22 @@
+
+
+h4{
+    text-align: center;
+    font-size: xx-large;
+}
+
+.reg_container{
+    text-align: center;
+    width: 70%;
+    border: 1px solid;
+    padding: 50px;
+}
+
+.col-half{
+    padding: 0 5px;
+}
+
+input{
+    width: 15%;
+    border-radius: 10%;
+}
