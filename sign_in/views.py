@@ -39,6 +39,8 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password1']
         password2 = request.POST['password2']
+        bed_amount = request.POST['bed_amount']
+        bed_type = request.POST['bed_type']
 
         if password == password2:
             if User.objects.filter(email=email).exists():
@@ -59,7 +61,20 @@ def register(request):
                 user = User.objects.create_user(username=hospital_name,last_name=branch,email=email,password=password)
                 #user.save()
                 print('user created')
+
+                if bed_type == 'ICU':
+                    user = bed_type
+
+                    for i in bed_amount:
+                        data = {
+                            u'bed_no': i,
+                            u'status': 'vacant'
+                        }
+                        db.collection(u'bedManagement').document(bed_type).set(data)
+
                 return redirect('login')
+
+            
     else:
         print('Password not matching.')
     return render(request,"register.html")

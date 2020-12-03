@@ -1,34 +1,60 @@
 {% extends 'base.html' %}
 {% block content %}  
         
-<div class="reg_container">
+<div class="reg_container" style="width: 80%; margin-top: 40px;">
   <form action="register" method="POST">
     {% csrf_token %}
       <div class="row">
-        <h4>Account</h4>
+        <h4 style="font-size: 2.5rem;">Account</h4>
         <div class="input-group input-group-icon">
-          <input type="text" name="hospital_name" placeholder="Hospital Name"/>
+          <input type="text" name="hospital_name" placeholder="Hospital Name" required/>
           <div class="input-icon"><i class="fa fa-user"></i></div>
         </div>
 
         <div class="input-group input-group-icon">
-          <input type="text" name="branch" placeholder="Branch"/>
+          <input type="text" name="branch" placeholder="Branch" required/>
           <div class="input-icon"><i class="fas fa-code-branch"></i></div>
         </div>
         <div class="input-group input-group-icon">
-          <input type="email" name="email" placeholder="Email Address"/>
+          <input type="email" name="email" placeholder="Email Address" required/>
           <div class="input-icon"><i class="fa fa-envelope"></i></div>
         </div>
         <div class="input-group input-group-icon">
-          <input type="password" name="password1" placeholder="Password"/>
+          <input type="password" name="password1" placeholder="Password" required/>
           <div class="input-icon"><i class="fa fa-key"></i></div>
         </div>
         <div class="input-group input-group-icon">
-          <input type="password" name="password2" placeholder="Confirm Password"/>
+          <input type="password" name="password2" placeholder="Confirm Password" required/>
           <div class="input-icon"><i class="fa fa-key"></i></div>
         </div>
+        <div style="width: 100%; margin: 5px auto;">
+          <h4>Bed Information</h4>
+        </div>
+        
+    <!--    <div class="input-group input-group-icon">
+          <input type="text" placeholder="Card Number"/>
+          <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+        </div>  -->
+        <div class="col-half">
+          <div class="input-group input-group-icon">
+            <input type="text" name="bed_amount" placeholder="Bed Amount" required/>
+            <div class="input-icon"><i class="fa fa-bed"></i></div>
+          </div>
+        </div>
+        <div class="col-half">
+          <div class="input-group">
+            <h5 style="margin: auto;">Bed Type : </h5> 
+            <select name="bed_type">
+              <option>ICU</option>
+              <option>Emergency</option>
+              <option>Ward</option>
+            </select>
+          </div>
+        </div>
+        <input style="width: 15%; border-radius: 10%;" type="submit">
       </div>
-      <input type="submit">
+      
+      
 
 
 <!--      <div class="row">
@@ -64,28 +90,7 @@
           <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal"/>
           <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
         </div>
-        <div class="input-group input-group-icon">
-          <input type="text" placeholder="Card Number"/>
-          <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-        </div>
-        <div class="col-half">
-          <div class="input-group input-group-icon">
-            <input type="text" placeholder="Card CVC"/>
-            <div class="input-icon"><i class="fa fa-user"></i></div>
-          </div>
-        </div>
-        <div class="col-half">
-          <div class="input-group">
-            <select>
-              <option>01 Jan</option>
-              <option>02 Jan</option>
-            </select>
-            <select>
-              <option>2015</option>
-              <option>2016</option>
-            </select>
-          </div>
-        </div>
+        
       </div>
       <div class="row">
         <h4>Terms and Conditions</h4>
