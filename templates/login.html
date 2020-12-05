@@ -11,41 +11,52 @@
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>HospiHere</title>
 </head>
-<body>
-    <h4 style="text-align: center; font-size:xx-large;">Login To Continue</h4>
-    <div class="reg_container">
+<body style="margin: 30px; padding: 30px;">
+    
+    <div class="reg_container" style="width: 80%; margin-top: 40px;">
+      <h4 style="text-align: center; font-size:xx-large; margin-bottom: 20px; padding: 10px;">Login To Continue</h4>
         <form action="login" method="POST"> 
             {% csrf_token %}
             <div class="row">
+              
+              <div class="col-half" style="padding: 0 5px;">
                 <div class="input-group input-group-icon">
-                  <input type="text" name="hospital" placeholder="Hospital Name"/>
+                  <input type="text" name="hospital" placeholder="Hospital Name" required/>
                   <div class="input-icon"><i class="fa fa-user"></i></div>
                 </div>
-        
+              </div>
+              
+              <div class="col-half" style="padding: 0 5px;">
                 <div class="input-group input-group-icon">
-                  <input type="text" name="branch" placeholder="Branch"/>
+                  <input type="text" name="branch" placeholder="Branch" required/>
                   <div class="input-icon"><i class="fas fa-code-branch"></i></div>
                 </div>
-                <div class="input-group input-group-icon">
-                  <input type="email" name="email" placeholder="Email Address"/>
-                  <div class="input-icon"><i class="fa fa-envelope"></i></div>
-                </div>
-                <div class="input-group input-group-icon">
-                  <input type="password" name="password" placeholder="Password"/>
+              </div>
+
+                <div class="input-group input-group-icon" style="padding: 0 5px; margin: 10px 0;">
+                  <input type="password" name="password" placeholder="Password" required/>
                   <div class="input-icon"><i class="fa fa-key"></i></div>
                 </div>
-              </div>
-              <input type="submit">
+
             </div>
+              <input style="width: 15%; border-radius: 10%;" type="submit">
+              <h4 style="text-align: center; margin-top: 20px;">Register <a href="register">Here</a></h4>
+              
+              <div>
+                {% for message in messages %}
+
+                <h3 style="
+                margin-top: 15px;
+                color:  #E91E63;">
+                {{ message }}
+                </h3>
+
+                {% endfor %}
+              </div>
+    </div>   
         </form>
-      
-    <h4 style="text-align: center;">Register <a href="register">Here</a></h4>
+        
     
-    <div>
-        {% for message in messages %}
-        <h3>{{ message }}</h3>
-        {% endfor %}
-    </div>
 
 </body>
 </html>

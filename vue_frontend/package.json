@@ -8,10 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@firebase/firestore": "^2.0.4",
     "axios": "^0.21.0",
+<<<<<<< HEAD
     "core-js": "^3.8.0",
+=======
+    "core-js": "^3.6.5",
+>>>>>>> 50ae926e3557af1a9b651f2a5121df77d4f42a71
     "firebase": "^8.1.1",
     "material-design-icons-iconfont": "^6.1.0",
+    "vee-validate": "^3.4.5",
     "vue": "^2.6.11",
     "vuefire": "^2.2.4",
     "vuetify": "^2.3.19"
