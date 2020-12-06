@@ -5,7 +5,7 @@ from django.http import HttpResponse
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-
+from google.cloud.firestore_v1 import Increment
 
 # Create your views here.
 db = firestore.client()
@@ -23,6 +23,7 @@ def update(request, disease, hospital, mobile, preBook_date):
     patient_name = request.POST.get('patient_name')
     patient_address = request.POST.get('patient_address')
     bed_type = request.POST.get('bed_type')
+
     db.collection(u'booking').document(disease + hospital + mobile + preBook_date).update({
     "status": "Confirm",
     "disease_check": disease,
@@ -31,11 +32,9 @@ def update(request, disease, hospital, mobile, preBook_date):
     "bedType" : bed_type
     })
 
-    #frank_ref = db.collection(u'Hospitals').document(hospital)
-    #docs = db.collection(u'Hospitals').where(u'booked', u'==', True).stream()
-    #frank_ref.update({
-    #u'booked.icu': query + 1
-    #})
+    bookedInc = db.collection(u'hospitals').document(hospital)
+    bookedInc.set({u'booked': {bed_type: Increment(1)}}, merge=True)
+
 
     user = request.user.username
     doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).stream()

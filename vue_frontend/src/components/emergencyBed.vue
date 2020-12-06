@@ -17,7 +17,7 @@
             <!-- Booked part end --> 
         <v-layout wrap
         v-for="items in hospitals" 
-        :key="items.name">
+        :key="items.name"> 
           <v-flex
           xs12 sm6 md3 lg2 
           v-for="bed in items.booked.emergency" 
