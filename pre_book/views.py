@@ -22,12 +22,20 @@ def pre_book(request):
 def update(request, disease, hospital, mobile, preBook_date):
     patient_name = request.POST.get('patient_name')
     patient_address = request.POST.get('patient_address')
+    bed_type = request.POST.get('bed_type')
     db.collection(u'booking').document(disease + hospital + mobile + preBook_date).update({
     "status": "Confirm",
     "disease_check": disease,
     "patient_name": patient_name,
-    "patient_address": patient_address 
+    "patient_address": patient_address,
+    "bedType" : bed_type
     })
+
+    #frank_ref = db.collection(u'Hospitals').document(hospital)
+    #docs = db.collection(u'Hospitals').where(u'booked', u'==', True).stream()
+    #frank_ref.update({
+    #u'booked.icu': query + 1
+    #})
 
     user = request.user.username
     doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).stream()

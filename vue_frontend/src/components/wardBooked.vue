@@ -22,7 +22,7 @@
                 </v-card-title>
                 
                 <v-card-text>
-                    Name :  
+                    Name : {{name}}
                 </v-card-text>
                 <v-card-text>
                     Mobile Number : 01628502312
@@ -54,6 +54,6 @@
         dialog: false,
       }
     },
-   // props: ['passion']
+    props: ['name']
   }
 </script>

@@ -35,20 +35,22 @@
           <input type="text" placeholder="Card Number"/>
           <div class="input-icon"><i class="fa fa-credit-card"></i></div>
         </div>  -->
-        <div class="col-half">
+        <div class="col-third">
           <div class="input-group input-group-icon">
-            <input type="text" name="bed_amount" placeholder="Bed Amount" required/>
+            <input type="number" name="icu_bed" placeholder="ICU Bed Amount" required/>
             <div class="input-icon"><i class="fa fa-bed"></i></div>
           </div>
         </div>
-        <div class="col-half">
-          <div class="input-group">
-            <h5 style="margin: auto;">Bed Type : </h5> 
-            <select name="bed_type">
-              <option>ICU</option>
-              <option>Emergency</option>
-              <option>Ward</option>
-            </select>
+        <div class="col-third">
+          <div class="input-group input-group-icon">
+            <input type="number" name="emergency_bed" placeholder="Emergency Bed Amount" required/>
+            <div class="input-icon"><i class="fa fa-bed"></i></div>
+          </div>
+        </div>
+        <div class="col-third">
+          <div class="input-group input-group-icon">
+            <input type="number" name="ward_bed" placeholder="Ward Bed Amount" required/>
+            <div class="input-icon"><i class="fa fa-bed"></i></div>
           </div>
         </div>
         <input style="width: 15%; border-radius: 10%;" type="submit">

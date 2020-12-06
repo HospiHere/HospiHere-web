@@ -3,30 +3,27 @@
         <div class="text-center">
             <v-dialog
             v-model="dialog"
-            width="500"
+            width="400"
             >
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
-                color="light-green darken-4"
+                color="blue-grey darken-2"
                 dark
                 v-bind="attrs"
                 v-on="on"
                 >
-                Booked
+                VACANT
                 </v-btn>
             </template>
 
             <v-card>
                 <v-card-title class="headline grey lighten-2">
-                Patient Information
+                Register Here
                 </v-card-title>
-                
-                <v-card-text>
-                    Name :  
-                </v-card-text>
-                <v-card-text>
-                    Mobile Number : 01628502312
-                </v-card-text>
+
+                <div class="ma-3 py-4">
+                    <bookingForm/>
+                </div>
 
                 <v-divider></v-divider>
 
@@ -37,7 +34,7 @@
                     text
                     @click="dialog = false"
                 >
-                    OK
+                    Close
                 </v-btn>
                 </v-card-actions>
             </v-card>
@@ -48,12 +45,15 @@
 
 
 <script>
+import bookingForm from "./bookingForm";
   export default {
     data () {
       return {
         dialog: false,
       }
     },
-   // props: ['passion']
+    components:{
+        bookingForm,
+    }
   }
 </script>
