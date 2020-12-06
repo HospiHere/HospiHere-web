@@ -26,29 +26,19 @@
     <v-tabs-items v-model="tabs">
       <!-- ICU bed-->
       <v-tab-item>
-        <icuBed :booked="booked" :hospitals="hospitals"/>
-      </v-tab-item>    
-      <v-tab-item>
-        <!-- Emergency bed-->
-        <emergency-bed :team="team"/>
+        <icuBed :booking="booking" :hospitals="hospitals"/>
       </v-tab-item>
-      <v-tab-item>
-        <!-- Ward bed-->
-        <v-card flat>
-          <v-card-title class="headline">
-            An even better title
-          </v-card-title>
-          <v-card-text>
-            <p>
-              Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem. Sed hendrerit. Maecenas malesuada. Vestibulum ullamcorper mauris at ligula. Proin faucibus arcu quis ante.
-            </p>
 
-            <p class="mb-0">
-              Etiam vitae tortor. Curabitur ullamcorper ultricies nisi. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. Aliquam lobortis. Suspendisse potenti.
-            </p>
-          </v-card-text>
-        </v-card>
+      <!-- Emergency bed-->    
+      <v-tab-item>
+        <emergency-bed :booking="booking" :hospitals="hospitals"/>
       </v-tab-item>
+      
+      <!-- Ward bed-->
+      <v-tab-item>
+        <ward-bed :booking="booking" :hospitals="hospitals"/>
+      </v-tab-item>
+      
     </v-tabs-items>
   </v-card>
   </v-app>
@@ -62,26 +52,30 @@ import { firestorePlugin } from 'vuefire'
 
 import EmergencyBed from './components/emergencyBed.vue';
 import icuBed from "./components/icuBed";
+import WardBed from './components/wardBed.vue';
 
 Vue.use(firestorePlugin)
 const db = firebase.initializeApp({ projectId: 'hospihere-bd' }).firestore()
 
   export default {
+    beforeMount(){
+    this.hospiName = document.getElementsByTagName('h1')[1].getAttribute('request.session.hospital')||'';
+  },
     components:{
-      icuBed,
-      EmergencyBed,
+        icuBed,
+        EmergencyBed,
+        WardBed,
     },
     firestore: {
-      booked: db.collection('booking'),
+      booking: db.collection('booking'),
       hospitals: db.collection('hospitals'),
     },
     data () {
       return {
         dialog: false,
-        booked: [],
+        booking: [],
         hospitals: [],
         tabs: null,
-        text: 'Lorem ipsum dolor sit amet. Ut laboris nisi ut aliquip ex ea commodo consequat.',
       }
     },
   }

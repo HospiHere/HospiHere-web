@@ -39,8 +39,9 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password1']
         password2 = request.POST['password2']
-        bed_amount = request.POST['bed_amount']
-        bed_type = request.POST['bed_type']
+        icu_bed = request.POST['icu_bed']
+        emergency_bed = request.POST['emergency_bed']
+        ward_bed = request.POST['ward_bed']
 
         if password == password2:
             if User.objects.filter(email=email).exists():
@@ -49,34 +50,34 @@ def register(request):
             else:
                 user = hospital_name
 
-                data = {
+                hospital_data = {
                     u'name': hospital_name,
                     u'branch':branch,
-                    u'email': email
+                    u'email': email,
+                    u'bed' : {
+                        u'emergency' : int(emergency_bed),
+                        u'icu' : int(icu_bed),
+                        u'ward': int(ward_bed),
+                    },
+                    u'booked' : {
+                        u'emergency' : 0,
+                        u'icu' : 0,
+                        u'ward': 0,
+                    }
                 }
 
+
                 # Add a new doc in collection
-                db.collection(u'Hospitals').document(user).set(data)
+                db.collection(u'Hospitals').document(user).set(hospital_data)
                 #create django authenticate user
                 user = User.objects.create_user(username=hospital_name,last_name=branch,email=email,password=password)
                 #user.save()
                 print('user created')
 
-                if bed_type == 'ICU':
-                    user = bed_type
-
-                    for i in bed_amount:
-                        data = {
-                            u'bed_no': i,
-                            u'status': 'vacant'
-                        }
-                        db.collection(u'bedManagement').document(bed_type).set(data)
-
                 return redirect('login')
-
             
-    else:
-        print('Password not matching.')
+        else:
+            print('Password not matching.')
     return render(request,"register.html")
 
 def logout(request):
