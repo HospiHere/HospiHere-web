@@ -20,12 +20,16 @@
                 <v-card-title class="headline grey lighten-2">
                 Patient Information
                 </v-card-title>
+                <v-card-text></v-card-text>
                 
                 <v-card-text>
-                    Name :  
+                    Name : {{name}}
                 </v-card-text>
                 <v-card-text>
-                    Mobile Number : 01628502312
+                    Mobile Number : {{mobile}}
+                </v-card-text>
+                <v-card-text>
+                    Disease : {{disease}}
                 </v-card-text>
 
                 <v-divider></v-divider>
@@ -54,6 +58,6 @@
         dialog: false,
       }
     },
-   // props: ['passion']
+    props: ['name','mobile','disease']
   }
 </script>

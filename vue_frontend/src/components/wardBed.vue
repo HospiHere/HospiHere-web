@@ -3,11 +3,11 @@
         <v-layout wrap> 
           <v-span v-for="person in booking" :key="person">
             <v-flex 
-             v-if = "person.bedType == 'ward' && person.hospital == 'Monwara'">
+             v-if = "person.bedType == 'ward' && person.hospital == 'hospiName'">
               <v-card color="green" flat class="text-center ma-2">
                 <div class="subheading ma-3 py-4">
-                  <h2 style="color:white;">Bed {{person.role}}</h2>
-                  <emgBooked :name="person.role"/>
+                  <h2 style="color:white;">Bed {{ }}</h2>
+                  <wardBooked :name="person.patient_name" :mobile="person.mobile" :disease="person.disease"/>
                 </div>
               </v-card>
             </v-flex>
@@ -20,16 +20,16 @@
         :key="items.name">
           <v-flex
           xs12 sm6 md3 lg2 
-          v-for="bed in items.booked.ward" 
+          v-for="bed in items.bed.ward" 
           :key="bed">
-            <span v-if="items.name == 'Birdem'">
+            <span v-if="items.name == 'Monwara'">
               <v-card color="grey" 
                 flat
                 class="text-center ma-2"
                 >
                   <div class="subheading ma-3 py-4">
                     <h2>Bed {{bed}}</h2>
-                    <emgVacant/>
+                    <wardVacant/>
                   </div>
                 </v-card>
             </span>
@@ -39,14 +39,14 @@
 </template>
 
 <script>
-import emgBooked from "./emgBooked";
-import emgVacant from "./emgVacant";
+import wardBooked from "./wardBooked";
+import wardVacant from "./wardVacant";
 
 export default {
   components:{
-      emgBooked,
-      emgVacant,
+      wardBooked,
+      wardVacant,
   },
- props: ['booking','hospitals']
+ props: ['booking','hospitals','hospiName']
 }
 </script>

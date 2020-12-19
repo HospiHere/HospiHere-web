@@ -26,7 +26,7 @@
     <v-tabs-items v-model="tabs">
       <!-- ICU bed-->
       <v-tab-item>
-        <icuBed :booking="booking" :hospitals="hospitals"/>
+        <icuBed :booking="booking" :hospitals="hospitals" :hospiName="hospital"/>
       </v-tab-item>
 
       <!-- Emergency bed-->    
@@ -56,6 +56,8 @@ import WardBed from './components/wardBed.vue';
 
 Vue.use(firestorePlugin)
 const db = firebase.initializeApp({ projectId: 'hospihere-bd' }).firestore()
+
+var hospital = document.getElementById("hospitalName").value;
 
   export default {
     beforeMount(){

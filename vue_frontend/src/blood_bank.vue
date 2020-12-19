@@ -61,7 +61,8 @@
     },
 
     firestore: {
-      donors: db.collection('bank'),
+      donors: db.collection('bank').where('lastDonated', "<=", new Date(Date.now()-4492800000) ),
+      
     }
   }
 </script>

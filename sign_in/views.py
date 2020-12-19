@@ -39,21 +39,33 @@ def register(request):
         email = request.POST['email']
         password = request.POST['password1']
         password2 = request.POST['password2']
+        latitude = request.POST['latitude']
+        longitude = request.POST['longitude']
         icu_bed = request.POST['icu_bed']
         emergency_bed = request.POST['emergency_bed']
         ward_bed = request.POST['ward_bed']
+        testItem = request.POST.getlist('DynamicTextBox')
+        specDisease = request.POST.getlist('DynamicSpecialistBox')
 
         if password == password2:
             if User.objects.filter(email=email).exists():
                 messages.info(request,'Email already used')
+            if User.objects.filter(username = hospital_name).exists():
+                messages.info(request,'Hospital already exist')
                 
             else:
                 user = hospital_name
 
                 hospital_data = {
+                    u'availableTest':testItem,
+                    u'specialization':specDisease,
                     u'name': hospital_name,
                     u'branch':branch,
                     u'email': email,
+                    u'location' : {
+                        u'latitude' : latitude,
+                        u'longitude' : longitude,
+                    },
                     u'bed' : {
                         u'emergency' : int(emergency_bed),
                         u'icu' : int(icu_bed),
@@ -68,7 +80,7 @@ def register(request):
 
 
                 # Add a new doc in collection
-                db.collection(u'Hospitals').document(user).set(hospital_data)
+                db.collection(u'hospitals').document(user).set(hospital_data)
                 #create django authenticate user
                 user = User.objects.create_user(username=hospital_name,last_name=branch,email=email,password=password)
                 #user.save()
@@ -83,7 +95,3 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
-
-
-    
-

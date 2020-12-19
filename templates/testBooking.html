@@ -1,0 +1,69 @@
+  
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+
+    <div class="pre_book">
+        <h3>Test Booking List</h3>
+        <table class="table table-hover table-borderless">
+            <thead class="thead-dark">
+                <th scope="col">Mobile</th>
+                <th scope="col">Test</th> 
+                <th scope="col">Appointment Date</th>
+                <th scope="col">Appointment Time</th>
+                <th scope="col">Status</th>
+            </thead>
+            {% for c in content%}
+            <form method="POST" action="{% url 'update' c.testName c.hospital c.mobile c.testAppointmentDate c.testAppointmentTime%}">
+                {% csrf_token %}
+            <tr>
+                <td style="padding-top: 23px;font-size: 20px;">{{c.mobile}}</td>
+                <td style="padding-top: 23px;font-size: 20px;">{{c.testName}}</td>
+                <td style="padding-top: 23px;font-size: 20px;">{{c.testAppointmentDate}}</td>
+                <td style="padding-top: 23px;font-size: 20px;">{{c.testAppointmentTime}}</td>
+                {% if c.status == "Pending" %}
+                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#id{{c.id}}">Confirm Booking</button></td>
+            
+
+            <!-- Modal -->
+            <div class="modal fade" id="id{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 style="padding-left: 30px;" class="modal-title" id="exampleModalCenterTitle">Confirming booking for <span style="color: red;">{{c.mobile}}</span></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                        <div class="modal-body">
+                        <p><span style="font-weight: 900;padding-left: 5px;">Hospital: </span>{{c.hospital}}</p>
+                        <p><span style="font-weight: 900;padding-left: 5px;">Test: </span>{{c.testName}}</p>
+                        <p><span style="font-weight: 900;padding-left: 5px;">Appointment Date: </span>{{c.testAppointmentDate}}</p>
+                        <p><span style="font-weight: 900;padding-left: 5px;">Status: </span>{{c.status}}</p>
+                        <input name="patient_name" type="text" placeholder="Patient Name" required><br><br>
+                        <input name="patient_address" type="text" placeholder="Patient Address" required><br><br>
+                        <input name="testAppointmentTime" type="text" placeholder="Appointment Time" required ><br><br>
+                    </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">CONFIRM</button>
+                        </div>
+                    
+                </div>
+                </div>
+            </div>
+
+
+            {% else %}
+            <td><a href="#" class="btn btn-success";>Confirmed</a></td>
+            {% endif %}
+            </tr>
+            </form>
+            {% endfor %}
+        </table>
+    </div>
+
+{% else %}
+{% include 'login.html' %}
+{% endif %}
+{% endblock %}

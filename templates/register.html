@@ -27,14 +27,26 @@
           <input type="password" name="password2" placeholder="Confirm Password" required/>
           <div class="input-icon"><i class="fa fa-key"></i></div>
         </div>
+
+        <div style="width: 100%; margin: 5px auto;">
+          <h4>Location</h4>
+        </div>
+        <div class="col-half">
+          <div class="input-group input-group-icon">
+            <input type="text" name="latitude" placeholder="Latitude" required/>
+            <div class="input-icon"><i class="fa fa-location-arrow"></i></div>
+          </div>
+        </div>
+        <div class="col-half">
+          <div class="input-group input-group-icon">
+            <input type="text" name="longitude" placeholder="Longitude" required/>
+            <div class="input-icon"><i class="fa fa-location-arrow"></i></div>
+          </div>
+        </div>
+
         <div style="width: 100%; margin: 5px auto;">
           <h4>Bed Information</h4>
         </div>
-        
-    <!--    <div class="input-group input-group-icon">
-          <input type="text" placeholder="Card Number"/>
-          <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-        </div>  -->
         <div class="col-third">
           <div class="input-group input-group-icon">
             <input type="number" name="icu_bed" placeholder="ICU Bed Amount" required/>
@@ -53,56 +65,75 @@
             <div class="input-icon"><i class="fa fa-bed"></i></div>
           </div>
         </div>
-        <input style="width: 15%; border-radius: 10%;" type="submit">
-      </div>
       
-      
+      <div class="col-half">
+        <div style="width: 100%; margin: 5px auto;">
+          <h4>Test Information</h4>
+        </div>
+        <input id="btnAdd" type="button" value="Add Test Field" onclick="AddTextBox()" style="margin: 3px 0;"/>
+        <div id="testInfo" style="margin: 5px 0;">
+        </div>
+      </div>
 
+      <div class="col-half">
+        <div style="width: 100%; margin: 5px auto;">
+          <h4>Specialized Area</h4>
+        </div>
+        <input id="btnAdd" type="button" value="Add Specialist Field" onclick="AddSpecialistBox()" style="margin: 3px 0;"/>
+        <div id="specialistInfo" style="margin: 5px 0;">
+        </div>
+      </div>
 
-<!--      <div class="row">
-        <div class="col-half">
-          <h4>Date of Birth</h4>
-          <div class="input-group">
-            <div class="col-third">
-              <input type="text" placeholder="DD"/>
-            </div>
-            <div class="col-third">
-              <input type="text" placeholder="MM"/>
-            </div>
-            <div class="col-third">
-              <input type="text" placeholder="YYYY"/>
-            </div>
-          </div>
-        </div>
-        <div class="col-half">
-          <h4>Gender</h4>
-          <div class="input-group">
-            <input id="gender-male" type="radio" name="gender" value="male"/>
-            <label for="gender-male">Male</label>
-            <input id="gender-female" type="radio" name="gender" value="female"/>
-            <label for="gender-female">Female</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <h4>Payment Details</h4>
-        <div class="input-group">
-          <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true"/>
-          <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
-          <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal"/>
-          <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
-        </div>
-        
-      </div>
-      <div class="row">
-        <h4>Terms and Conditions</h4>
-        <div class="input-group">
-          <input id="terms" type="checkbox"/>
-          <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
-        </div>
-      </div>
-  </div> -->
+    </div>
+    <input style="width: 15%; border-radius: 10%;" type="submit">
     </form>
+
+
+
+
+    <script type="text/javascript">
+      function GetDynamicTextBox(value){
+          return '<input name = "DynamicTextBox" type="text" value = "' + value + '"  placeholder="Available Test" style="margin: 3px 0;"/>'
+      }
+      function GetSpecialistBox(value){
+        return '<input name = "DynamicSpecialistBox" type="text" value = "' + value + '" placeholder="Disease Specialist"  style="margin: 3px 0;" />'
+    }
+      function AddTextBox() {
+          var div = document.createElement('DIV');
+          div.innerHTML = GetDynamicTextBox("");
+          document.getElementById("testInfo").appendChild(div);
+      }
+
+      function AddSpecialistBox() {
+        var div = document.createElement('DIV');
+        div.innerHTML = GetSpecialistBox("");
+        document.getElementById("specialistInfo").appendChild(div);
+    }
+
+      function RecreateDynamicTextboxes() {
+          var values = eval('<%=Values%>');
+          if (values != null) {
+              var html = "";
+              for (var i = 0; i < values.length; i++) {
+                  html += "<div>" + GetDynamicTextBox(values[i]) + "</div>";
+              }
+              document.getElementById("testInfo").innerHTML = html;
+          }
+      }
+      function RecreateDynamicSpeBoxes() {
+        var values = eval('<%=Values%>');
+        if (values != null) {
+            var html = "";
+            for (var i = 0; i < values.length; i++) {
+                html += "<div>" + GetSpecialistBox(values[i]) + "</div>";
+            }
+            document.getElementById("specialistInfo").innerHTML = html;
+        }
+    }
+      window.onload = RecreateDynamicTextboxes;
+      window.onload = RecreateDynamicSpeBoxes;
+      </script>
+
 
 
 <div>
@@ -112,3 +143,4 @@
 </div>
 
 {% endblock %}
+

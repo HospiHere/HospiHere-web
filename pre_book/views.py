@@ -29,12 +29,13 @@ def update(request, disease, hospital, mobile, preBook_date):
     "disease_check": disease,
     "patient_name": patient_name,
     "patient_address": patient_address,
-    "bedType" : bed_type
+    "bedType" : bed_type,
     })
 
-    bookedInc = db.collection(u'hospitals').document(hospital)
-    bookedInc.set({u'booked': {bed_type: Increment(1)}}, merge=True)
-
+    db.collection(u'hospitals').document(hospital).update({
+    "booked" : {bed_type: Increment(1)},
+    "bed" : {bed_type: Increment(-1)},
+    })
 
     user = request.user.username
     doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).stream()
