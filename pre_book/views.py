@@ -20,22 +20,32 @@ def pre_book(request):
     return render(request,"pre_book.html", {'content': items})
 
 def update(request, disease, hospital, mobile, preBook_date):
-    patient_name = request.POST.get('patient_name')
-    patient_address = request.POST.get('patient_address')
-    bed_type = request.POST.get('bed_type')
+    release = request.POST.get('release')
+    if release is None:
+        patient_name = request.POST.get('patient_name')
+        patient_address = request.POST.get('patient_address')
+        bed_type = request.POST.get('bed_type')
 
-    db.collection(u'booking').document(disease + hospital + mobile + preBook_date).update({
-    "status": "Confirm",
-    "disease_check": disease,
-    "patient_name": patient_name,
-    "patient_address": patient_address,
-    "bedType" : bed_type,
-    })
+        db.collection(u'booking').document(disease + hospital + mobile + preBook_date).update({
+        "status": "Confirm",
+        "disease_check": disease,
+        "patient_name": patient_name,
+        "patient_address": patient_address,
+        "bedType" : bed_type,
+        })
 
-    db.collection(u'hospitals').document(hospital).update({
-    "booked" : {bed_type: Increment(1)},
-    "bed" : {bed_type: Increment(-1)},
-    })
+        db.collection(u'hospitals').document(hospital).update({
+        "booked" : {bed_type: Increment(1)},
+        "bed" : {bed_type: Increment(-1)},
+        })
+    else:
+        bed_type = request.POST.get('bed_type')
+        db.collection(u'hospitals').document(hospital).update({
+        "booked" : {bed_type: Increment(-1)},
+        "bed" : {bed_type: Increment(1)},
+        })
+
+        db.collection(u'booking').document(disease + hospital + mobile + preBook_date).delete()
 
     user = request.user.username
     doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).stream()
@@ -45,4 +55,4 @@ def update(request, disease, hospital, mobile, preBook_date):
 
     return render(request,"pre_book.html", {'content': items})
 
-    
+

@@ -5,6 +5,7 @@
 {% load render_bundle from webpack_loader %}
 
 <div id="app">
+  <input type="hidden" id="hospitalName" value="{{request.session.hospital}}">
   <app><</app>
 </div>
 {% render_bundle 'chunk-vendors' %}

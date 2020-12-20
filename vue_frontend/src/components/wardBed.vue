@@ -6,7 +6,7 @@
              v-if = "person.bedType == 'ward' && person.hospital == 'hospiName'">
               <v-card color="green" flat class="text-center ma-2">
                 <div class="subheading ma-3 py-4">
-                  <h2 style="color:white;">Bed {{ }}</h2>
+                  <h2 style="color:white;">Bed {{hospiName }}</h2>
                   <wardBooked :name="person.patient_name" :mobile="person.mobile" :disease="person.disease"/>
                 </div>
               </v-card>
