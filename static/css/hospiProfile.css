@@ -1,0 +1,44 @@
+.hospiProfile{
+
+    margin: 5px;
+    
+    padding: 5px;
+    }
+    .info{
+
+/* text-align: center; */
+
+border: 1px solid #946e6e;
+
+display: flex;
+
+background: #efefef;
+
+}
+    .colHalf{
+        padding-right: 10px;
+        float: left;
+        width: 50%;
+        /* margin: 5px; */
+        /* background: aliceblue; */
+    }
+    .hospiProfile h3{
+    
+    font-size: xx-large;
+    
+    text-align: center;
+    }
+    .content{
+    
+width: 100%;
+    
+margin: 5px;
+    
+padding: 5px;
+    }
+    .content h4{
+    
+/* text-align: left; */
+    
+/* color: black; */
+    }

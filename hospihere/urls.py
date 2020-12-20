@@ -25,6 +25,7 @@ urlpatterns = [
     path('',include('testBooking.urls')),
     path('',include('bloodBank.urls')),
     path('',include('bed_management.urls')),
+    path('',include('hospiProfile.urls')),
     path('admin/', admin.site.urls),
     path('', include('hospital_list.urls')),
 ]
