@@ -59,7 +59,7 @@
                 {% else %}
                 <td>
                     <a href="#" class="btn btn-success";>Confirmed</a>
-                        {% csrf_token %}
+                       
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#id{{c.id}}">Release</button>
                         <!-- Modal -->
                         <div class="modal fade" id="id{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -74,6 +74,7 @@
                                     <div class="modal-body">
                                     <p><span style="font-weight: 900;padding-left: 5px;">Hospital: </span>{{c.hospital}}</p>
                                     <p><span style="font-weight: 900;padding-left: 5px;">Reason: </span>{{c.disease}}</p>
+                                    <p><span style="font-weight: 900;padding-left: 5px;">Bed Type: </span>{{c.bedType}}</p>
                                     <p><span style="font-weight: 900;padding-left: 5px;">Pre-booking date: </span>{{c.preBook_date}}</p>
                                     <p><span style="font-weight: 900;padding-left: 5px;">Status: </span>{{c.status}}</p>
                                     <b>Bed Type :  </b>
@@ -94,7 +95,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                   
                 </td>
                 {% endif %}
                 </tr>

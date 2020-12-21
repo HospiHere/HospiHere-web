@@ -15,12 +15,21 @@ display: flex;
 background: #efefef;
 
 }
+.inputIcon{
+    display: contents;
+}
     .colHalf{
         padding-right: 10px;
         float: left;
         width: 50%;
         /* margin: 5px; */
         /* background: aliceblue; */
+    }
+    .col2Half{
+        float: left;
+        width: 50%;
+        margin-top: 1rem;
+        padding: 5px;
     }
     .hospiProfile h3{
     
@@ -30,15 +39,25 @@ background: #efefef;
     }
     .content{
     
+display: block;
+    
 width: 100%;
     
 margin: 5px;
     
-padding: 5px;
+text-align: center;
     }
     .content h4{
     
-/* text-align: left; */
+color: black;
     
-/* color: black; */
+display: inline-block;
+    
+margin: 2px;
+    
+padding: 2px;
+    }
+    .col-forth{
+        float: left;
+        width: 25%;
     }

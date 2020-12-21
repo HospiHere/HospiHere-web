@@ -5,33 +5,167 @@
 <div class="hospiProfile">
     <h3>Update Hospital Information</h3>
 </div>
+{% for c in content%}
 <div class="info">
     <div class="colHalf">
-        <div class="input-group input-group-icon">
+        <!-- Branch Section Start -->
             <div class="content">
-                <h4>Branch : Narshingdi</h4>
+                <form method="POST" action="branch">
+                {% csrf_token %}
+                <h4>Branch : {{c.branch}}</h4>
+                <div class="inputIcon">
+                    <i class="fa fa-edit" type="button" data-toggle="modal" data-target="#branchId" style="margin: 2px 5px; padding: 2px;"></i>
+                </div>
             </div>
-            <div class="content">
-                <h4>Branch : Narshingdi</h4>
+             
+             <div class="modal fade" id="branchId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 style="padding-left: 30px;" class="modal-title" id="exampleModalCenterTitle">
+                        Change branch from <span style="color: red;">{{c.branch}} to</span>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <input name="branch" type="text" placeholder="Branch" required><br><br>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">CONFIRM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        <!-- Branch Section End -->
+
+        <!-- Mail Section Start -->
+        <div class="content">
+            <form method="POST" action="email">
+            {% csrf_token %}
+            <h4>Email : {{c.email}}</h4>
+            <div class="inputIcon">
+                <i class="fa fa-edit" type="button" data-toggle="modal" data-target="#mailid" style="margin: 2px 5px; padding: 2px;"></i>
             </div>
         </div>
+         
+         <div class="modal fade" id="mailid" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 style="padding-left: 30px;" class="modal-title" id="exampleModalCenterTitle">
+                    Change email from <span style="color: red;">{{c.email}} to</span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <input name="email" type="text" placeholder="Email" required><br><br>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">CONFIRM</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    <!-- Branch Section End -->
     </div>
     <div class="colHalf">
-        <div class="input-group input-group-icon">
-            <div class="content">
-                <h4>Branch : Narshingdi</h4>
+        <div class="content">
+            <h4>Branch : Narshingdi</h4>
+            <div class="inputIcon">
+                <i class="fa fa-edit" style="margin: 2px 5px; padding: 2px;"></i>
             </div>
-            <div class="content">
-                <h4>Branch : Narshingdi</h4>
+        </div>
+        <div class="content">
+            <h4>Branch : Narshingdi</h4>
+        </div>
+    </div>
+</div>
+<div class="hospiProfile">
+    <h3>Change Password</h3>
+</div>
+<div class="info">
+<div class="col2Half">
+    <div class="input-group input-group-icon">
+        <input type="password" name="newPassword" placeholder="New Password" required/>
+        <div class="input-icon"><i class="fa fa-key"></i></div>
+    </div>
+  </div>
+  <div class="col2Half">
+    <div class="input-group input-group-icon">
+        <input type="password" name="newPassword2" placeholder="Retype New Password" required/>
+        <div class="input-icon"><i class="fa fa-key"></i></div>
+    </div>
+  </div>
+</div>
+
+<div class="hospiProfile">
+    <h3>Update Bed Information</h3>
+</div>
+<form method="POST" action="bed">
+    {% csrf_token %}
+<div class="info">
+<div class="col-forth">
+    <div class="content">
+        {% with c.bed.icu|add:c.booked.icu as total %}
+        <h4>ICU Bed : {{ total }}</h4>
+        {% endwith %}
+    </div>
+  </div>
+  <div class="col-forth">
+    <div class="content">
+        {% with c.bed.emergency|add:c.booked.emergency as total %}
+        <h4>Emergency Bed : {{ total }}</h4>
+        {% endwith %}
+    </div>
+  </div>
+  <div class="col-forth">
+    <div class="content">
+        {% with c.bed.ward|add:c.booked.ward as total %}
+        <h4>Ward Bed : {{ total }}</h4>
+        {% endwith %}
+    </div>
+  </div>
+  <div class="col-forth">
+    <div class="content">
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#bedInfo">Update</button>
+    </div>
+  </div>
+
+  <div class="modal fade" id="bedInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 style="padding-left: 30px;" class="modal-title" id="exampleModalCenterTitle">
+            Update Bed Information
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <input name="icu" type="number" placeholder="Icu" required><br><br>
+            <input name="emergency" type="number" placeholder="Emergency" required><br><br>
+            <input name="ward" type="number" placeholder="Ward" required><br><br>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success">CONFIRM</button>
             </div>
         </div>
     </div>
 </div>
+</form>
+{% endfor %}
 
 
-
-
-  
 
 {% else %}
 {% include 'login.html' %}
