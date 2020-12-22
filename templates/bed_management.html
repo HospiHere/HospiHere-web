@@ -3,10 +3,10 @@
 {% if user.is_authenticated %}
 
 {% load render_bundle from webpack_loader %}
-
+<h1>{{request.session.hospital}}</h1>
 <div id="app">
   <input type="hidden" id="hospitalName" value="{{request.session.hospital}}">
-  <app><</app>
+  <app></app>
 </div>
 {% render_bundle 'chunk-vendors' %}
 {% render_bundle 'bed_management' %}
@@ -14,5 +14,5 @@
 {% else %}
 {% include 'login.html' %}
 {% endif %}
-<script src="bed_management.vue"></script>
+<script id="bedManage" src="bed_management.vue"></script>
 {% endblock %}

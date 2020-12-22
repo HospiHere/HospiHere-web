@@ -26,17 +26,17 @@
     <v-tabs-items v-model="tabs">
       <!-- ICU bed-->
       <v-tab-item>
-        <icuBed :booking="booking" :hospitals="hospitals" :hospiName="hospital"/>
+        <icuBed :booking="booking" :hospitals="hospitals" :hospiName="hospital" :hospitalName="hospitalName"/>
       </v-tab-item>
 
       <!-- Emergency bed-->    
       <v-tab-item>
-        <emergency-bed :booking="booking" :hospitals="hospitals"/>
+        <emergency-bed :booking="booking" :hospitals="hospitals" :hospitalName="hospitalName"/>
       </v-tab-item>
       
       <!-- Ward bed-->
       <v-tab-item>
-        <ward-bed :booking="booking" :hospitals="hospitals"/>
+        <ward-bed :booking="booking" :hospitals="hospitals" :hospitalName="hospitalName"/>
       </v-tab-item>
       
     </v-tabs-items>
@@ -44,25 +44,27 @@
   </v-app>
 </template>
 
+
 <script>
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import Vue from 'vue'
-import { firestorePlugin } from 'vuefire'
+  import firebase from 'firebase/app'
+  import 'firebase/firestore'
+  import Vue from 'vue'
+  import { firestorePlugin } from 'vuefire'
 
-import EmergencyBed from './components/emergencyBed.vue';
-import icuBed from "./components/icuBed";
-import WardBed from './components/wardBed.vue';
+  import EmergencyBed from './components/emergencyBed.vue';
+  import icuBed from "./components/icuBed";
+  import WardBed from './components/wardBed.vue';
 
-Vue.use(firestorePlugin)
-const db = firebase.initializeApp({ projectId: 'hospihere-bd' }).firestore()
+  Vue.use(firestorePlugin)
+  const db = firebase.initializeApp({ projectId: 'hospihere-bd' }).firestore()
 
-var hospital = document.getElementById("hospitalName").value;
+  var hospital = document.getElementById("hospitalName").value;
+  console.log("....");
+  console.log(hospital);
+  console.log("...");
 
   export default {
-    beforeMount(){
-    this.hospiName = document.getElementsByTagName('h1')[1].getAttribute('request.session.hospital')||'';
-  },
+    
     components:{
         icuBed,
         EmergencyBed,
@@ -78,6 +80,7 @@ var hospital = document.getElementById("hospitalName").value;
         booking: [],
         hospitals: [],
         tabs: null,
+        hospitalName: hospital,
       }
     },
   }

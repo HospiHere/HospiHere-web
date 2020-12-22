@@ -29,6 +29,9 @@
                     Mobile Number : {{mobile}}
                 </v-card-text>
                 <v-card-text>
+                    Address : {{address}}
+                </v-card-text>
+                <v-card-text>
                     Disease : {{disease}}
                 </v-card-text>
 
@@ -58,6 +61,6 @@
         dialog: false,
       }
     },
-    props: ['name','mobile','disease']
+    props: ['name','mobile','disease', 'address']
   }
 </script>
