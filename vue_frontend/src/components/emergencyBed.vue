@@ -3,11 +3,11 @@
         <v-layout wrap> 
           <v-span v-for="person in booking" :key="person">
             <v-flex 
-             v-if = "person.bedType == 'emergency' && person.hospital == 'Monwara'">
+             v-if = "person.bedType == 'emergency' && person.hospital == hospitalName">
               <v-card color="green" flat class="text-center ma-2">
                 <div class="subheading ma-3 py-4">
                   <h2 style="color:white;">Bed {{person.role}}</h2>
-                  <emgBooked :name="person.patient_name" :mobile="person.mobile" :disease="person.disease"/>
+                  <emgBooked :name="person.patient_name" :mobile="person.mobile" :disease="person.disease" :address="person.patient_address"/>
                 </div>
               </v-card>
             </v-flex>
@@ -20,9 +20,9 @@
         :key="items.name">
           <v-flex
           xs12 sm6 md3 lg2 
-          v-for="bed in items.bed.emergency" 
+          v-for="bed in (items.bed.emergency-items.booked.emergency)" 
           :key="bed">
-            <span v-if="items.name == 'Monwara'">
+            <span v-if="items.name == hospitalName">
               <v-card color="grey" 
                 flat
                 class="text-center ma-2"
@@ -47,6 +47,6 @@ export default {
       emgBooked,
       emgVacant,
   },
- props: ['booking','hospitals']
+ props: ['booking','hospitals', 'hospitalName']
 }
 </script>

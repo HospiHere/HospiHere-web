@@ -21,6 +21,7 @@ def pre_book(request):
 
 def update(request, disease, hospital, mobile, preBook_date):
     release = request.POST.get('release')
+    bookedInc = db.collection(u'hospitals').document(hospital)
     if release is None:
         patient_name = request.POST.get('patient_name')
         patient_address = request.POST.get('patient_address')
@@ -33,17 +34,12 @@ def update(request, disease, hospital, mobile, preBook_date):
         "patient_address": patient_address,
         "bedType" : bed_type,
         })
+        
+        bookedInc.set({u'booked': {bed_type: Increment(1)}}, merge=True)
 
-        db.collection(u'hospitals').document(hospital).update({
-        "booked" : {bed_type: Increment(1)},
-        "bed" : {bed_type: Increment(-1)},
-        })
     else:
         bed_type = request.POST.get('bed_type')
-        db.collection(u'hospitals').document(hospital).update({
-        "booked" : {bed_type: Increment(-1)},
-        "bed" : {bed_type: Increment(1)},
-        })
+        bookedInc.set({u'booked': {bed_type: Increment(-1)}}, merge=True)
 
         db.collection(u'booking').document(disease + hospital + mobile + preBook_date).delete()
 
