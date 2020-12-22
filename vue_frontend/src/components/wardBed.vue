@@ -3,7 +3,7 @@
         <v-layout wrap> 
           <v-span v-for="person in booking" :key="person">
             <v-flex 
-             v-if = "person.bedType == 'ward' && person.hospital == hospitalName">
+             v-if = "person.bedType == 'ward' && person.hospital == hospitalName && person.status != 'Released'">
               <v-card color="green" flat class="text-center ma-2">
                 <div class="subheading ma-3 py-4">
                   <h2 style="color:white;">Bed {{person.role}}</h2>

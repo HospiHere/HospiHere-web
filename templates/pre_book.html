@@ -72,17 +72,13 @@
                                 </button>
                                 </div>
                                     <div class="modal-body">
-                                    <p><span style="font-weight: 900;padding-left: 5px;">Hospital: </span>{{c.hospital}}</p>
+                                    <p><span style="font-weight: 900;padding-left: 5px;">Name: </span>{{c.patient_name}}</p>
                                     <p><span style="font-weight: 900;padding-left: 5px;">Reason: </span>{{c.disease}}</p>
                                     <p><span style="font-weight: 900;padding-left: 5px;">Bed Type: </span>{{c.bedType}}</p>
-                                    <p><span style="font-weight: 900;padding-left: 5px;">Pre-booking date: </span>{{c.preBook_date}}</p>
-                                    <p><span style="font-weight: 900;padding-left: 5px;">Status: </span>{{c.status}}</p>
-                                    <b>Bed Type :  </b>
-                                    <select name="bed_type" aria-placeholder = "Bed Type">
-                                        <option value="emergency">Emergency</option>
-                                        <option value="icu">ICU</option>
-                                        <option value="ward">Ward</option>
-                                    </select><br><br>
+                                    <p><span style="font-weight: 900;padding-left: 5px;">Mobile: </span>{{c.mobile}}</p>
+                                    <p><span style="font-weight: 900;padding-left: 5px;">Address: </span>{{c.patient_address}}</p>
+
+                                    <input type="hidden" name="bed_type" value="{{c.bedType}}">
                                     <b>Release confirmed :  </b>
                                     <select name="release">
                                         <option value="yes">Yes</option>
@@ -90,7 +86,7 @@
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success">CONFIRM</button>
+                                    <button type="submit" class="btn btn-danger">RELEASE</button>
                                     </div>
                                 </div>
                             </div>
