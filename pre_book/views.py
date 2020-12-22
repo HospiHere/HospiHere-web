@@ -6,13 +6,14 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from google.cloud.firestore_v1 import Increment
+from datetime import datetime
 
 # Create your views here.
 db = firestore.client()
 
 def pre_book(request):
     user = request.user.username
-    doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).stream()
+    doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).where(u'status', u'!=', u'Released').stream()
     items=[]
     for doc in doc_ref:
         items.append(doc.to_dict())
@@ -41,10 +42,16 @@ def update(request, disease, hospital, mobile, preBook_date):
         bed_type = request.POST.get('bed_type')
         bookedInc.set({u'booked': {bed_type: Increment(-1)}}, merge=True)
 
-        db.collection(u'booking').document(disease + hospital + mobile + preBook_date).delete()
+        #current date and time
+        now = datetime.now()
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        db.collection(u'booking').document(disease + hospital + mobile + preBook_date).update({
+        "status": "Released",
+        "releaseDate": dt_string,
+        })
 
     user = request.user.username
-    doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).stream()
+    doc_ref = db.collection(u'booking').where(u'hospital', u'==', user).where(u'status', u'!=', u'Released').stream()
     items=[]
     for doc in doc_ref:
         items.append(doc.to_dict())
