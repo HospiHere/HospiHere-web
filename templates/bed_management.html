@@ -3,7 +3,6 @@
 {% if user.is_authenticated %}
 
 {% load render_bundle from webpack_loader %}
-<h1>{{request.session.hospital}}</h1>
 <div id="app">
   <input type="hidden" id="hospitalName" value="{{request.session.hospital}}">
   <app></app>
