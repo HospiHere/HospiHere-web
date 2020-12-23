@@ -6,7 +6,7 @@
              v-if = "person.bedType == 'ward' && person.hospital == hospitalName && person.status != 'Released'">
               <v-card color="green" flat class="text-center ma-2">
                 <div class="subheading ma-3 py-4">
-                  <h2 style="color:white;">Bed {{person.role}}</h2>
+                  <h4 style="color:white;font-size:20px;text-transform: uppercase;">{{person.patient_name}} {{person.role}}</h4>
                   <wardBooked :name="person.patient_name" :mobile="person.mobile" :disease="person.disease" :address="person.patient_address"/>
                 </div>
               </v-card>
