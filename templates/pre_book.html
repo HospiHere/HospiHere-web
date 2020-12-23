@@ -5,6 +5,7 @@
 
     <div class="pre_book">
         <h3>Pre Booking List</h3>
+       
         <table class="table table-hover table-borderless">
             <thead class="thead-dark">
                 <th scope="col">Mobile</th>
@@ -12,6 +13,12 @@
                 <th scope="col">PreBook Date</th>
                 <th scope="col">Status</th>
             </thead>
+            
+            {% if content == 0 %}
+                <tr>
+                    <td style="height: 200px;padding-top: 6%;" colspan="4">No pre bookings to show!</td>
+                </tr>
+            {% else %}
             {% for c in content%}
             <form method="POST" action="{% url 'update' c.disease c.hospital c.mobile c.preBook_date%}">
                 {% csrf_token %}
@@ -97,6 +104,7 @@
                 </tr>
             </form>
             {% endfor %}
+            {% endif %}
         </table>
     </div>
 

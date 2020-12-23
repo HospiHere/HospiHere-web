@@ -17,7 +17,8 @@ def pre_book(request):
     items=[]
     for doc in doc_ref:
         items.append(doc.to_dict())
-        
+    if items == []:
+        items = 0    
     return render(request,"pre_book.html", {'content': items})
 
 def update(request, disease, hospital, mobile, preBook_date):
