@@ -145,17 +145,23 @@
 <div class="info">
 <div class="col-forth">
     <div class="content">
-        <h4>ICU Bed : {{ c.bed.icu }}</h4>
+        {% with c.bed.icu|add:c.booked.icu as total %}
+        <h4>ICU Bed : {{ total }}</h4>
+        {% endwith %}
     </div>
   </div>
   <div class="col-forth">
     <div class="content">
-        <h4>Emergency Bed : {{ c.bed.emergency }}</h4>
+        {% with c.bed.emergency|add:c.booked.emergency as total %}
+        <h4>Emergency Bed : {{ total }}</h4>
+        {% endwith %}
     </div>
   </div>
   <div class="col-forth">
     <div class="content">
-        <h4>Ward Bed : {{ c.bed.ward }}</h4>
+        {% with c.bed.ward|add:c.booked.ward as total %}
+        <h4>Ward Bed : {{ total }}</h4>
+        {% endwith %}
     </div>
   </div>
   <div class="col-forth">
