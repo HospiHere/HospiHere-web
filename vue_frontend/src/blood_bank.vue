@@ -38,6 +38,8 @@
   import Vue from 'vue'
   import { firestorePlugin } from 'vuefire'
 
+  var moment = require('moment');
+
   Vue.use(firestorePlugin)
 
   const db = firebase.initializeApp({ projectId: 'hospihere-bd' }).firestore()
@@ -45,6 +47,7 @@
   export default {
     data () {
       return {
+        moment:moment,
         search: '',
         headers: [
           {
@@ -57,13 +60,28 @@
           { text: 'Blood Group', value: 'bloodGroup' },
         ],
         donors: [],
+        eligibleDonors: [],
       }
     },
 
-    firestore: {
-      donors: db.collection('bank').where('lastDonated', "<=", new Date(Date.now()-4492800000) ),
-      
-    }
+    created() {
+        var date = moment().subtract(56, 'days').calendar();
+        db.collection("bank")
+        .get()
+        .then(snapshot => {
+            snapshot.forEach(doc => {
+              if (doc.data()["lastDonated"] != undefined || doc.data()["lastDonated"] != null) {
+                var d = doc.data()["lastDonated"];
+                var ld = moment.unix(d.seconds).format("MM/DD/YYYY");
+                if (ld < date) {
+                  this.donors.push(doc.data());
+                }
+              } else {
+                this.donors.push(doc.data());
+              }
+            });
+        });
+    },
   }
 </script>
 
